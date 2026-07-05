@@ -26,4 +26,12 @@ public class BankController {
     public void delete(@PathVariable Long id) {
         service.delete(id);
     }
+
+    @PutMapping("/{id}")
+    public BankEntity update(
+            @PathVariable Long id,
+            @RequestBody BankEntity bank) {
+        bank.setId(id);
+        return service.update(id, bank);
+    }
 }

@@ -29,8 +29,17 @@ public class TransactionController {
     public TransactionEntity createTransaction(
             @RequestBody TransactionEntity transaction) {
 
-        return transactionService.createTransaction(
-                transaction
-        );
+        return transactionService.createTransaction(transaction);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteTransaction(@PathVariable Long id) {
+        transactionService.deleteTransaction(id);
+    }
+
+    @GetMapping("/account/{accountId}")
+    public List<TransactionEntity> getTransactionsByAccount(
+            @PathVariable Long accountId) {
+        return transactionService.getTransactionsByAccount(accountId);
     }
 }

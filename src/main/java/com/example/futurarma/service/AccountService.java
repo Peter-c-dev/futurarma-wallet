@@ -5,35 +5,33 @@ import org.springframework.transaction.annotation.Transactional;
 import com.example.futurarma.repository.TransactionRepository;
 import com.example.futurarma.entity.TransactionEntity;
 import com.example.futurarma.enums.TransactionType;
-import java.time.LocalDateTime;
 import java.util.List;
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import com.example.futurarma.repository.AccountRepository;
 import com.example.futurarma.entity.AccountEntity;
 @Service
 @RequiredArgsConstructor
 @Transactional
 public class AccountService {
-    private final AccountRepository repository;
+    private final AccountRepository accountRepository;
     private final TransactionRepository transactionRepository;
 
     public AccountEntity create(AccountEntity account) {
-        return repository.save(account);
+        return accountRepository.save(account);
     }
 
     public List<AccountEntity> getAll() {
-        return repository.findAll();
+        return accountRepository.findAll();
     }
 
     public AccountEntity find(Long accountId) {
-        return repository.findById(accountId)
+        return accountRepository.findById(accountId)
                 .orElseThrow(() ->
                         new RuntimeException("Account not found"));
     }
 
     public void delete(Long accountId) {
-        repository.deleteById(accountId);
+        accountRepository.deleteById(accountId);
     }
 
     public void withdrawMoney(
@@ -43,24 +41,24 @@ public class AccountService {
             throw new RuntimeException("Invalid amount");
         }
         AccountEntity account =
-                repository.findById(accountId)
+                accountRepository.findById(accountId)
                         .orElseThrow(() ->
                                 new RuntimeException("Account not found"));
         BigDecimal withdrawalAmount =
                 BigDecimal.valueOf(amount);
-        if (account.getCash()
+        if (account.getBalance()
                 .compareTo(withdrawalAmount) < 0) {
-            throw new RuntimeException("Insufficient cash");
+            throw new RuntimeException("Insufficient balance");
         }
-        account.setCash(
-                account.getCash()
+        account.setBalance(
+                account.getBalance()
                         .subtract(withdrawalAmount)
         );
-        repository.save(account);
+        accountRepository.save(account);
         logTransaction(
                 account,
                 withdrawalAmount,
-                TransactionType.WITHDRAW);
+                TransactionType.WITHDRAWAL);
 
     }
 
@@ -68,7 +66,7 @@ public class AccountService {
             Long accountId,
             Integer amount) {
         AccountEntity account =
-                repository.findById(accountId)
+                accountRepository.findById(accountId)
                         .orElseThrow(() ->
                                 new RuntimeException("Account not found"));
         if (amount <= 0) {
@@ -76,11 +74,11 @@ public class AccountService {
         }
         BigDecimal depositAmount =
                 BigDecimal.valueOf(amount);
-        account.setCash(
-                account.getCash()
+        account.setBalance(
+                account.getBalance()
                         .add(depositAmount)
         );
-        repository.save(account);
+        accountRepository.save(account);
         logTransaction(
                 account,
                 depositAmount,
@@ -95,29 +93,29 @@ public class AccountService {
             throw new RuntimeException("Invalid amount");
         }
         AccountEntity from =
-                repository.findById(fromAccountId)
+                accountRepository.findById(fromAccountId)
                         .orElseThrow(() ->
                                 new RuntimeException("From account not found"));
         AccountEntity to =
-                repository.findById(toAccountId)
+                accountRepository.findById(toAccountId)
                         .orElseThrow(() ->
                                 new RuntimeException("To account not found"));
         BigDecimal transferAmount =
                 BigDecimal.valueOf(amount);
-        if (from.getCash()
+        if (from.getBalance()
                 .compareTo(transferAmount) < 0) {
-            throw new RuntimeException("Insufficient cash");
+            throw new RuntimeException("Insufficient balance");
         }
-        from.setCash(
-                from.getCash()
+        from.setBalance(
+                from.getBalance()
                         .subtract(transferAmount)
         );
-        to.setCash(
-                to.getCash()
+        to.setBalance(
+                to.getBalance()
                         .add(transferAmount)
         );
-        repository.save(from);
-        repository.save(to);
+        accountRepository.save(from);
+        accountRepository.save(to);
         logTransaction(
                 from,
                 transferAmount,
@@ -136,9 +134,7 @@ public class AccountService {
         transaction.setAmount(amount);
 
         // CHANGE THIS LINE
-        transaction.setType(type);
-
-        transaction.setTimestamp(LocalDateTime.now());
+        transaction.setTransactionType(type);
 
         transactionRepository.save(transaction);
     }

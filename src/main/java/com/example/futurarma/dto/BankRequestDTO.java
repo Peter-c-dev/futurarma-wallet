@@ -15,6 +15,12 @@ public class BankRequestDTO {
     private String bankOpeningHours;
 
     private boolean bankOpen;
+
+    @DecimalMin("0.0")
+    @DecimalMax("5.00")
     private Double bankRating;
-    private Double savingRating;
+
+    @DecimalMin("0.0")
+    @DecimalMax("5.0")
+    private Double customerSatisfactionRating;
 }

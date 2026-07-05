@@ -30,6 +30,10 @@ public class AccountController {
     public AccountEntity getOne(@PathVariable Long id) {
         return service.find(id);
     }
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Long id) {
+        service.delete(id);
+    }
     @PostMapping("/withdraw")
     public void withdraw(
             @RequestParam Long accountId,

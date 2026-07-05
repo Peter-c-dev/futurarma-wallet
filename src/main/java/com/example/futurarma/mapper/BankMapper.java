@@ -11,7 +11,7 @@ public class BankMapper {
                 .bankOpeningHours(dto.getBankOpeningHours())
                 .bankOpen(dto.isBankOpen())
                 .bankRating(dto.getBankRating())
-                .savingRating(dto.getSavingRating())
+                .customerSatisfactionRating(dto.getCustomerSatisfactionRating())
                 .build();
     }
 }

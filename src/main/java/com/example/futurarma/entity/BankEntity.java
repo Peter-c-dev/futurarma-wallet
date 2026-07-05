@@ -4,7 +4,11 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.*;
 import java.util.*;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 @Entity
+@Table(name = "banks")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -28,8 +32,14 @@ public class BankEntity {
     private String bankOpeningHours;
 
     private boolean bankOpen;
+
+    @DecimalMin("0.0")
+    @DecimalMax("5.0")
     private Double bankRating;
-    private Double savingRating;
+
+    @DecimalMin("0.0")
+    @DecimalMax("5.0")
+    private Double customerSatisfactionRating;
 
 
     @OneToMany(
@@ -40,4 +50,14 @@ public class BankEntity {
     @Builder.Default
     private List<AccountEntity> accounts = new ArrayList<>();
 
-}
+    public void addAccount(AccountEntity account) {
+        accounts.add(account);
+        account.setBank(this);
+    }
+    public void removeAccount(AccountEntity account) {
+        accounts.remove(account);
+        account.setBank(null);
+
+        }
+    }
+
