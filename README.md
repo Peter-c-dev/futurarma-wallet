@@ -4,36 +4,23 @@
 
 A Spring Boot REST API inspired by the Futurama universe for managing banks, customer accounts and financial transactions.
 
-The application allows users to create banks, manage accounts, perform deposits, withdrawals and transfers, and record financial transactions while following a clean layered architecture.
-
-This project demonstrates backend software development using Java, Spring Boot, REST APIs, JPA/Hibernate and database persistence.
+The application allows users to create banks and accounts, perform deposits, withdrawals and transfers, and record transactions while following a layered Spring Boot architecture.
 
 ---
 
 ## 🚀 Features
 
-- Create banks
-- View all banks
-- View bank by ID
-- Update banks
-- Delete banks
-- Create accounts
-- View all accounts
-- View account by ID
-- Deposit money
-- Withdraw money
-- Transfer money
-- Create transactions
-- View all transactions
-- View transaction by ID
+- Create, read, update and delete banks
+- Create, read and delete accounts
+- Deposit money into accounts
+- Withdraw money from accounts
+- Transfer money between accounts
+- Create and retrieve transactions
+- Entity validation
 - RESTful API design
 - Layered architecture (Controller → Service → Repository)
-
-
-- Swagger/OpenAPI documentation
-
-
-- Input validation using Jakarta Validation
+- H2 Database
+- Swagger / OpenAPI documentation
 
 ---
 
@@ -41,25 +28,16 @@ This project demonstrates backend software development using Java, Spring Boot, 
 
 - Java 17
 - Spring Boot
+- Spring Web
 - Spring Data JPA
 - Hibernate
-- Maven
-
-
-- Swagger / OpenAPI
-
-
 - H2 Database
-
-
 - Lombok
-
-
+- Maven
+- Swagger / OpenAPI
 - IntelliJ IDEA
 
 ---
-
-
 
 ## 📂 Project Structure
 
@@ -88,16 +66,16 @@ Controller
 Clone the repository
 
 ```bash
-git clone https://github.com/Peter-c-dev/futurarma.git
+git clone <repository-url>
 ```
 
-Navigate into the project
+Navigate to the project
 
 ```bash
 cd futurarma
 ```
 
-Run
+Run the application
 
 ```bash
 mvn spring-boot:run
@@ -105,7 +83,7 @@ mvn spring-boot:run
 
 Open Swagger
 
-```text
+```
 http://localhost:8080/swagger-ui/index.html
 ```
 
@@ -113,126 +91,86 @@ http://localhost:8080/swagger-ui/index.html
 
 ## 📸 Screenshots
 
-### 🏗️ Project Structure
+### Project Structure
 
 ![Project Structure](screenshots/01-project-structure.png)
 
-### 🏦 Create Bank
+### Create Bank
 
 ![Create Bank](screenshots/02-create-bank.png)
 
-### 📋 Get All Banks
+### Get All Banks
 
 ![Get All Banks](screenshots/03-get-all-banks.png)
 
-### 🔍 Get Bank By ID
+### Get Bank By ID
 
 ![Get Bank](screenshots/04-get-bank-by-id.png)
 
-### ✏️ Update Bank
+### Update Bank
 
 ![Update Bank](screenshots/05-update-bank.png)
 
-### 🗑️ Delete Bank
+### Delete Bank
 
 ![Delete Bank](screenshots/06-delete-bank.png)
 
-### 💳 Create Account
+### Create Account
 
 ![Create Account](screenshots/07-create-account.png)
 
-### 📋 Get All Accounts
+### Get All Accounts
 
-![Get Accounts](screenshots/08-get-all-accounts.png)
+![Get All Accounts](screenshots/08-get-all-accounts.png)
 
-### 🔍 Get Account By ID
+### Get Account By ID
 
 ![Get Account](screenshots/09-get-account-by-id.png)
 
-### 💰 Deposit Money
+### Deposit Money
 
-![Deposit Money](screenshots/10-deposit-money.png)
+![Deposit](screenshots/10-deposit-money.png)
 
-### 💸 Withdraw Money
+### Withdraw Money
 
-![Withdraw Money](screenshots/11-withdraw-money.png)
+![Withdraw](screenshots/11-withdraw-money.png)
 
-### 🔄 Transfer Money
+### Transfer Money
 
-![Transfer Money](screenshots/12-transfer-money.png)
+![Transfer](screenshots/12-transfer-money.png)
 
-### 🧾 Create Transaction
+### Create Transaction
 
 ![Create Transaction](screenshots/13-create-transaction.png)
 
-### 📋 Get All Transactions
+### Get All Transactions
 
-![Transactions](screenshots/14-get-all-transactions.png)
+![Get Transactions](screenshots/14-get-all-transactions.png)
 
-### 🔍 Get Transaction By ID
+### Get Transaction By ID
 
-![Transaction](screenshots/15-get-transaction-by-id.png)
-
----
-
-
-
-## 📡 API Endpoints
-
-| Method | Endpoint | Description |
-|---------|----------|-------------|
-| POST | /banks | Create bank |
-| GET | /banks | Get all banks |
-| GET | /banks/{id} | Get bank |
-| PUT | /banks/{id} | Update bank |
-| DELETE | /banks/{id} | Delete bank |
-| POST | /accounts | Create account |
-| GET | /accounts | Get all accounts |
-| GET | /accounts/{id} | Get account |
-| POST | /accounts/deposit | Deposit money |
-| POST | /accounts/withdraw | Withdraw money |
-| POST | /accounts/transfer | Transfer money |
-| POST | /transactions | Create transaction |
-| GET | /transactions | Get all transactions |
-| GET | /transactions/{id} | Get transaction |
+![Get Transaction](screenshots/15-get-transaction-by-id.png)
 
 ---
 
 ## 📚 What I Learned
 
-Through this project I improved my understanding of:
+During this project I strengthened my understanding of:
 
-- REST API development
-- Spring Boot architecture
-- Layered backend design
-- Database persistence with JPA/Hibernate
-
-
-- API testing with Postman
-
-
-- API testing using Swagger/OpenAPI
-
-
+- Spring Boot application architecture
+- RESTful API development
 - CRUD operations
-
-
-- Service and Repository patterns
-
-
-- Entity relationships
-
-
-- Validation using Jakarta Validation
-
-
+- Layered architecture
+- JPA/Hibernate relationships
 - Transaction handling
+- Validation using Jakarta Validation
+- API testing using Swagger
+- Repository and Service patterns
 
 ---
 
 ## 👨‍💻 Author
 
-Peter Cross
+**Peter Cross**
 
-GitHub:
-https://github.com/Peter-c-dev
+GitHub: https://github.com/Peter-c-dev-c-dev
